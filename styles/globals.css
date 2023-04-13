@@ -19,8 +19,9 @@ a {
   html {
     color-scheme: dark;
   }
+
   body {
     color: white;
-    background: black;
+    background-color: rgba(17, 24, 39, 1);
   }
 }
