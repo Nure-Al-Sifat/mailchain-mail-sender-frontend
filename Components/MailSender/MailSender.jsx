@@ -7,6 +7,7 @@ import styles from "./MailSender.module.css";
 const MailSender = () => {
   const [name, setName] = useState("");
   const [toEmail, setToEmail] = useState("");
+  const [select, setSelect] = useState("");
 
   const url = process.env.NEXT_PUBLIC_API_URL;
 
@@ -15,7 +16,7 @@ const MailSender = () => {
       .post(`${url}/sendMail`, {
         name: name,
         email: toEmail,
-        message: "Flintstone",
+        message: select,
       })
       .then(async (response) => {
         console.log(response);
@@ -52,9 +53,19 @@ const MailSender = () => {
             onChange={(e) => setToEmail(e.target.value)}
           />
         </div>
-        <div className={styles.input_group}>
+        {/* <div className={styles.input_group}>
           <label htmlFor="message">Message</label>
           <input type="text" name="message" id="message" placeholder="" />
+          <div className={styles.forgot}></div>
+        </div> */}
+        <div className={styles.input_group}>
+          <label htmlFor="message">Select Option</label>
+          <select value={select} onChange={(e) => setSelect(e.target.value)}>
+            <option></option>
+            <option>write me a poem within 20 characters</option>
+            <option>write me a poem within 30 characters</option>
+            <option>write me a poem within 40 characters</option>
+          </select>
           <div className={styles.forgot}></div>
         </div>
         <button type="button" className={styles.sign} onClick={handleMailSend}>
