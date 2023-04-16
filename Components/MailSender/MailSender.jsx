@@ -10,7 +10,7 @@ const MailSender = () => {
   // const [select, setSelect] = useState("");
   // const [getTime, setGetTime] = useState();
   const [fields, setFields] = useState([
-    { name: null, toEmail: null, message: null, getTime: null },
+    { name: null, toEmail: null, message: null, getTime: new Date() },
   ]);
 
   console.log(fields);
@@ -48,7 +48,12 @@ const MailSender = () => {
   }
   function handleChangeTime(i, event) {
     const values = [...fields];
-    values[i].getTime = event.target.value;
+    let utcTime = event.target.value;
+    let date = new Date(utcTime);
+    let utcString = date.toUTCString();
+    utcString = date.toISOString();
+    console.log(utcString);
+    values[i].getTime = utcString;
     setFields(values);
   }
 
@@ -103,6 +108,7 @@ const MailSender = () => {
               <div className={styles.input_group}>
                 <label htmlFor="message"> Set schedule</label>
                 <input
+                  // value={fields[idx].getTime}
                   type="datetime-local"
                   id="time"
                   name="time"
