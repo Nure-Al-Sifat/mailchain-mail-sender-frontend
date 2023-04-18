@@ -111,123 +111,127 @@ const MailSender = () => {
   return (
     <div className={styles.form_container}>
       <p className={styles.title}>MailChain.GPT</p>
-
-      {fields.map((field, idx) => {
-        return (
-          <div className={styles.form_box}>
-            <form className={styles.form} key={`${field}-${idx}`}>
-              <div className={styles.input_group}>
-                <label htmlFor="name">Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  placeholder="Name"
-                  onChange={(e) => handleChange(idx, e)}
-                />
-              </div>
-              <div className={styles.input_group}>
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Email"
-                  onChange={(e) => handleChangeEmail(idx, e)}
-                />
-              </div>
-              {/* <div className={styles.input_group}>
+      <div className={styles.main_box}>
+        {fields.map((field, idx) => {
+          return (
+            <div className={styles.form_box} key={idx}>
+              <form className={styles.form} key={`${field}-${idx}`}>
+                <div className={styles.input_group}>
+                  <label htmlFor="name">Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    placeholder="Name"
+                    onChange={(e) => handleChange(idx, e)}
+                  />
+                </div>
+                <div className={styles.input_group}>
+                  <label htmlFor="email">Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Email addresses"
+                    onChange={(e) => handleChangeEmail(idx, e)}
+                  />
+                </div>
+                {/* <div className={styles.input_group}>
   <label htmlFor="message">Message</label>
   <input type="text" name="message" id="message" placeholder="" />
   <div className={styles.forgot}></div>
 </div> */}
 
-              <div className={styles.input_group}>
-                <label htmlFor="message">Select Option</label>
-                <select
-                  value={fields[idx].select}
-                  onChange={(e) => handleChangeSelect(idx, e)}
-                >
-                  <option></option>
-                  <option>write me a poem within 20 characters</option>
-                  <option>write me a poem within 30 characters</option>
-                  <option>write me a poem within 40 characters</option>
-                </select>
-              </div>
-
-              <div className={styles.input_group}>
-                <label htmlFor="message"> Set schedule</label>
-
-                <div className={styles.checkbox_con}>
-                  <input
-                    id="checkbox"
-                    type="checkbox"
-                    onClick={(e) => handleschedule(idx, e)}
-                  />
+                <div className={styles.input_group}>
+                  <label htmlFor="message">Select Option</label>
+                  <select
+                    value={fields[idx].message}
+                    onChange={(e) => handleChangeSelect(idx, e)}
+                  >
+                    <option>write me a poem within 20 characters</option>
+                    <option>write me a poem within 30 characters</option>
+                    <option>write me a poem within 40 characters</option>
+                  </select>
                 </div>
-                {fields[idx].toggleschedule && (
-                  <input
-                    type="datetime-local"
-                    id="time"
-                    name="time"
-                    onChange={(e) => handleChangeTime(idx, e)}
-                  />
-                )}
 
-                {/* <input type="text" name="message" id="message" placeholder="" /> */}
-                <div className={styles.forgot}></div>
-              </div>
-            </form>
+                <div className={styles.input_group}>
+                  <label htmlFor="message"> Set schedule</label>
 
-            <button
-              className={styles.noselect}
-              type="button"
-              onClick={() => handleRemove(idx)}
-            >
-              <span className={styles.text}>Delete</span>
-              <span className={styles.icon}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path>
-                </svg>
-              </span>
-            </button>
-          </div>
-        );
-      })}
-      <div className={styles.button_box}>
-        <button
-          type="button"
-          className={styles.button}
-          onClick={() => handleAdd()}
-        >
-          <span className={styles.button__text}>Add Email sequence</span>
-          <span className={styles.button__icon}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke-linejoin="round"
-              stroke-linecap="round"
-              stroke="currentColor"
-              height="24"
-              fill="none"
-              class="svg"
-            >
-              <line y2="19" y1="5" x2="12" x1="12"></line>
-              <line y2="12" y1="12" x2="19" x1="5"></line>
-            </svg>
-          </span>
-        </button>
+                  <div className={styles.checkbox_con}>
+                    <input
+                      id="checkbox"
+                      type="checkbox"
+                      onClick={(e) => handleschedule(idx, e)}
+                    />
+                  </div>
+                  {fields[idx].toggleschedule && (
+                    <input
+                      type="datetime-local"
+                      id="time"
+                      name="time"
+                      onChange={(e) => handleChangeTime(idx, e)}
+                    />
+                  )}
 
-        <button type="button" className={styles.sign} onClick={handleMailSend}>
-          Send Messages
-        </button>
+                  {/* <input type="text" name="message" id="message" placeholder="" /> */}
+                  <div className={styles.forgot}></div>
+                </div>
+              </form>
+
+              <button
+                className={styles.noselect}
+                type="button"
+                onClick={() => handleRemove(idx)}
+              >
+                <span className={styles.text}>Delete</span>
+                <span className={styles.icon}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path>
+                  </svg>
+                </span>
+              </button>
+            </div>
+          );
+        })}
+        <div className={styles.button_box}>
+          <button
+            type="button"
+            className={styles.button}
+            onClick={() => handleAdd()}
+          >
+            <span className={styles.button__text}>Add Email sequence</span>
+            <span className={styles.button__icon}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke-linejoin="round"
+                stroke-linecap="round"
+                stroke="currentColor"
+                height="24"
+                fill="none"
+                class="svg"
+              >
+                <line y2="19" y1="5" x2="12" x1="12"></line>
+                <line y2="12" y1="12" x2="19" x1="5"></line>
+              </svg>
+            </span>
+          </button>
+
+          <button
+            type="button"
+            className={styles.sign}
+            onClick={handleMailSend}
+          >
+            Send Email
+          </button>
+        </div>
       </div>
     </div>
   );
